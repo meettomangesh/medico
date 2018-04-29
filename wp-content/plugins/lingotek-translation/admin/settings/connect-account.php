@@ -34,6 +34,5 @@
 	  echo sprintf( wp_kses( __( 'Do you already have a Lingotek account? <a href="%s">Connect Lingotek Account</a>', 'lingotek-translation' ), $allowed_html ), esc_attr( $connect_account_cloak_url_prod ) )
 	?>
 	</p>
-	<p class="description"><?php echo sprintf( wp_kses( __( 'Do you have a Lingotek sandbox account? <a href="%s">Connect Sandbox Account</a>', 'lingotek-translation' ), $allowed_html ), esc_attr( $connect_account_cloak_url_test ) ) ?></p>
 	</div>
 </div>

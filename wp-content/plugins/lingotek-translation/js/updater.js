@@ -21,27 +21,31 @@ jQuery(document).ready(function($) {
     tr_id = '#tag-';
     object_type = 'term';
   }
-  setInterval(function(){
-    var rows = $('#the-list').find('tr');
-    $(rows).each(function(){
-      if($(this).attr('id') && $(this).attr('id').length > 1){
-        var id = $(this).attr('id');
-        var object_id = id.replace( /^\D+/g, '');
-        current_ids[object_id] = object_id;
-      }
-    });
-    $.ajax({
-      type: 'POST',
-      url: ajax_url,
-      data: post_data,
-      dataType: 'json',
-      success: function (data) {
-        if (data !== null) {
-          update_indicators(data);
+
+  var interval = updater_data.interval === undefined ? 10 : updater_data.interval;
+  if (interval > 0) {
+    setInterval(function() {
+      var rows = $('#the-list').find('tr');
+      $(rows).each(function() {
+        if($(this).attr('id') && $(this).attr('id').length > 1) {
+          var id = $(this).attr('id');
+          var object_id = id.replace( /^\D+/g, '');
+          current_ids[object_id] = object_id;
         }
-      }
-    });
-  },10000);
+      });
+      $.ajax({
+        type: 'POST',
+        url: ajax_url,
+        data: post_data,
+        dataType: 'json',
+        success: function (data) {
+          if (data !== null) {
+            update_indicators(data);
+          }
+        }
+      });
+    }, interval * 1000);
+  }
 
   function update_indicators(data){
     ignoreClicks();
@@ -81,6 +85,10 @@ jQuery(document).ready(function($) {
           case 'pending':
             updateGenericBulkLink(tr, data, key, 'status' , 'Update translations status of this item in Lingotek TMS', 'Update translations status ');
             updateWorkbenchIcon(td, data, key, locale, 'In Progress', 'clock');
+            break;
+          case 'interim':
+            updateGenericBulkLink(tr, data, key, 'status' , 'Update translations status of this item in Lingotek TMS', 'Update translations status ');
+            updateInterimIcon(td, data, key, locale);
             break;
           case 'importing':
             $(td).find('.pll_icon_edit').remove();
@@ -163,6 +171,17 @@ jQuery(document).ready(function($) {
       .attr('title',title)
       .attr('target','_blank')
       .addClass('lingotek-color dashicons dashicons-' + icon + ' dashicons-' + icon + '-lingotek');
+    $(td).prepend(request_link);
+  }
+
+  function updateInterimIcon(td, data, key, locale) {
+    $(td).find('.lingotek-professional-icon').remove();
+    var icon = 'edit';
+    $(td).find('.lingotek-interim-color').remove();
+    var request_link = $('<a></a>').attr('href', data[key][locale]['workbench_link'])
+      .attr('title', 'Interim Translation Downloaded')
+      .attr('target','_blank')
+      .addClass('lingotek-interim-color dashicons dashicons-' + icon + ' dashicons-' + icon + '-lingotek');
     $(td).prepend(request_link);
   }
 

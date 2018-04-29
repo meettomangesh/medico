@@ -294,10 +294,15 @@ abstract class Lingotek_Group {
 		foreach ($translations as $lingotek_locale => $percent)
 		{
 			if (!isset($lingotek_locale_to_pll_locale[$lingotek_locale])) { continue; }
+
 			$wp_locale = $lingotek_locale_to_pll_locale[$lingotek_locale];
-			if ($translations[$lingotek_locale] < 100) {
+			if ($translations[$lingotek_locale] < 100 && $this->translations[$wp_locale] !== 'interim') {
 				$this->translations[$wp_locale] = 'pending';
-			} else if (!isset($this->translations[$wp_locale]) || $this->translations[$wp_locale] !== 'current'){
+			}
+			else if ($this->translations[$wp_locale] === 'interim' && $translations[$lingotek_locale] === 100) {
+				$this->translations[$wp_locale] = 'ready';
+			}
+			else if ((!isset($this->translations[$wp_locale])) || ($this->translations[$wp_locale] !== 'current') && $this->translations[$wp_locale] !== 'interim') {
 				$this->translations[$wp_locale] = 'ready';
 			}
 		}

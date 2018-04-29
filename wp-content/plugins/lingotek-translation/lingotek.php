@@ -2,7 +2,7 @@
 /**
 	Plugin name: Lingotek Translation
 	Plugin URI: http://lingotek.com/wordpress#utm_source=wpadmin&utm_medium=plugin&utm_campaign=wplingotektranslationplugin
-	Version: 1.3.4
+	Version: 1.3.7
 	Author: Lingotek and Frédéric Demarle
 	Author uri: http://lingotek.com
 	Description: Lingotek offers convenient cloud-based localization and translation.
@@ -16,7 +16,7 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit();
 }
 
-define( 'LINGOTEK_VERSION', '1.3.4' ); // plugin version (should match above meta).
+define( 'LINGOTEK_VERSION', '1.3.7' ); // plugin version (should match above meta).
 define( 'LINGOTEK_MIN_PLL_VERSION', '1.8' );
 define( 'LINGOTEK_BASENAME', plugin_basename( __FILE__ ) ); // plugin name as known by WP.
 define( 'LINGOTEK_PLUGIN_SLUG', 'lingotek-translation' );// plugin slug (should match above meta: Text Domain).

@@ -156,12 +156,12 @@ function ecommerce_market_site_branding() {
 
 								?>
 
-									<div class="popup-wrapper <?php echo esc_attr( $popup_class);?>">
+									<!--<div class="popup-wrapper <?php echo esc_attr( $popup_class);?>">
 										<div class="popup-wrap">
 											<span class="close"><i class="fa fa-close"></i></span>
 											<?php echo do_shortcode( '[woocommerce_my_account]');?>
 										</div>
-									</div>
+									</div>-->
 
 								
 							<?php } ?>
@@ -595,6 +595,7 @@ function ecommerce_market_footer_copyright() {
 
 			
 			<?php $footer_social_icon = ecommerce_market_get_option('footer_social_icon');
+             
 			if ( true == $footer_social_icon ):
 
 				if( has_nav_menu( 'social-menu' ) ) : ?>
@@ -625,7 +626,7 @@ function ecommerce_market_footer_copyright() {
 				/* translators: %s: theme */ 
 				$powered_by_text = sprintf( __( 'Theme of %s', 'ecommerce-market' ), '<a target="_blank" rel="designer" href="https://rigorousthemes.com/">Rigorous Themes</a>' ); /* translators: %s: theme info */ 
 				?>
-				<span class="copy-right"><?php echo wp_kses_post($powered_by_text);?>&nbsp;<?php echo esc_html( $copyright_footer );?></span>
+				<span class="copy-right"><?php //echo wp_kses_post($powered_by_text);?>&nbsp;<?php echo esc_html( $copyright_footer );?></span>
 
 			</div>
 		</div> 

@@ -294,6 +294,10 @@ class Lingotek_Group_Post extends Lingotek_Group {
 
 		$client = new Lingotek_API();
 
+		$status = $client->get_translation_status($this->document_id, $locale);
+		if ($status === -1) {
+			return;
+		}
 		$translation = $client->get_translation($this->document_id, $locale, $this->source);
 		if (!$translation || $this->translation_not_ready( json_decode($translation, true) )) return; // If the request failed.
 		$translation = json_decode($translation, true); // wp_insert_post expects array
@@ -322,7 +326,12 @@ class Lingotek_Group_Post extends Lingotek_Group {
 			}
 
 			wp_update_post($tr_post);
-			$this->safe_translation_status_update($locale, 'current');
+			if ($status !== 100) {
+				$this->safe_translation_status_update($locale, 'interim');
+			}
+			else {
+				$this->safe_translation_status_update($locale, 'current');
+			}
 		}
 
 		// create new translation
@@ -351,8 +360,8 @@ class Lingotek_Group_Post extends Lingotek_Group {
 				$tr_lang = $this->pllm->get_language($locale);
 				PLL()->model->post->set_language($tr_id, $tr_lang);
 				$this->safe_translation_status_update($locale, 'current', array($tr_lang->slug => $tr_id));
-				if ($starting_status == 'pending' && $callback_type == 'phase') {
-					$this->safe_translation_status_update($locale, 'pending');
+				if ($starting_status == 'pending') {
+					$this->safe_translation_status_update($locale, 'interim');
 				}
 				wp_set_object_terms($tr_id, $this->term_id, 'post_translations');
 

@@ -43,6 +43,17 @@ a.lingotek-color:hover {
 	color: #ffab42; /* lighter orange */
 }
 
+.lingotek-interim-color {
+	color: #b0b0b0;
+}
+a.lingotek-interim-color {
+	color: #b0b0b0;
+}
+
+a.lingotek-interim-color:hover {
+	color: #dbdbdb;
+}
+
 a.dashicons {
   cursor: pointer;
 }

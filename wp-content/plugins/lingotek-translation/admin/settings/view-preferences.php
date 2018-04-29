@@ -39,6 +39,14 @@ $setting_details = array(
 	  'enabled' => __( 'Enable importing from Lingotek Content Cloud. (beta)', 'wp-lingotek' ),
 	),
 ),
+'auto_update_status' => array(
+	'type' => 'dropdown',
+	'label'       => __( 'Automatic Status Update Interval', 'wp-lingotek' ),
+	'description' => __( 'Changes the rate at which content statuses update automatically.', 'wp-lingotek' ),
+	'values' => array(
+		'10' => '10 seconds', '30' => '30 seconds', '60' => '60 seconds', '-1' => 'Do not update automatically'
+	),
+),
 );
 
 function map_wp_post_status($status){

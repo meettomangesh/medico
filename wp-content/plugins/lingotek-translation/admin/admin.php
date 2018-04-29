@@ -207,6 +207,9 @@ class Lingotek_Admin {
 		foreach ( $scripts as $script => $v ) {
 			if ( in_array( $screen->base, $v[0], true ) ) {
 				wp_enqueue_script( 'lingotek_' . $script, LINGOTEK_URL . '/js/' . $script . $suffix . '.js', $v[1], LINGOTEK_VERSION, $v[2] );
+				$lingotek_prefs = get_option( 'lingotek_prefs' );
+				$auto_update_interval = isset($lingotek_prefs['auto_update_status']) ? intval($lingotek_prefs['auto_update_status']) : 10;
+				wp_localize_script( 'lingotek_' . $script, 'updater_data', array('interval' => $auto_update_interval));
 			}
 		}
 
@@ -315,19 +318,13 @@ class Lingotek_Admin {
 			// connect cloak redirect.
 			$connect = filter_input( INPUT_GET, 'connect' );
 			if ( ! empty( $connect ) ) {
-				// set sandbox or production (after button clicked).
-				if ( 0 === strcasecmp( $connect,'sandbox' ) ) {
-					update_option( 'lingotek_base_url', Lingotek_API::SANDBOX_URL );
-				} else {
-					update_option( 'lingotek_base_url', Lingotek_API::PRODUCTION_URL );
-				}
+				update_option( 'lingotek_base_url', Lingotek_API::PRODUCTION_URL );
 				$client = new Lingotek_API();
 				echo '<div class="wrap"><p class="description">' . esc_html( __( 'Redirecting to Lingotek to connect your account...','lingotek-translation' ) ) . '</p></div>';
 
 				$connect_url = (0 === strcasecmp( $connect,'new' )) ? $client->get_new_url( $redirect_url ) : $client->get_connect_url( $redirect_url );
 			}
 			$connect_account_cloak_url_new = admin_url( 'admin.php?page=' . $this->plugin_slug . '_settings&connect=new' );
-			$connect_account_cloak_url_test = admin_url( 'admin.php?page=' . $this->plugin_slug . '_settings&connect=sandbox' );
 			$connect_account_cloak_url_prod = admin_url( 'admin.php?page=' . $this->plugin_slug . '_settings&connect=production' );
 			include( LINGOTEK_ADMIN_INC . '/settings/connect-account.php' );
 		}

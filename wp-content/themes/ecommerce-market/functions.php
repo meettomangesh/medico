@@ -231,3 +231,10 @@ add_action( 'wp_enqueue_scripts', 'ecommerce_market_scripts' );
  * Load init.
  */
 require_once trailingslashit( get_template_directory() ) . 'inc/init.php';
+
+
+add_action( 'homepage', 'woo_slider', 10 );
+
+function woo_slider() {
+	get_template_part( 'slider' );
+}

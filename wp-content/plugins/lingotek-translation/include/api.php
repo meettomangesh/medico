@@ -15,7 +15,6 @@ class Lingotek_API extends Lingotek_HTTP {
 	private $auth_temp;
 
 	const PRODUCTION_URL = "https://myaccount.lingotek.com";
-	const SANDBOX_URL = "https://cms.lingotek.com";
 	const CLIENT_ID = "780966c9-f9c8-4691-96e2-c0aaf47f62ff";// Lingotek App ID
 
 
@@ -274,6 +273,27 @@ class Lingotek_API extends Lingotek_HTTP {
 	}
 
 	/**
+	 * check translations status of a specific locale for a document
+	 *
+	 * @since 0.1
+	 *
+	 * @param string $doc_id document id
+	 * @param string $locale locale
+	 * @return int with locale percent_complete
+	 */
+	public function get_translation_status($doc_id, $locale) {
+		$locale = Lingotek::map_to_lingotek_locale($locale);
+		$status = -1;
+		$response = $this->get($this->api_url . '/document/' . $doc_id . '/translation/' . $locale);
+		if (!is_wp_error($response) && 200 == wp_remote_retrieve_response_code($response)) {
+			$b = json_decode(wp_remote_retrieve_body($response));
+			$status = $b->properties->percent_complete;
+		}
+
+		return $status;
+	}
+
+	/**
 	 * check translations status of a document
 	 *
 	 * @since 0.1
@@ -477,10 +497,7 @@ class Lingotek_API extends Lingotek_HTTP {
 	 */
 	public function get_translation($doc_id, $locale, $wp_id = null) {
 		$locale = Lingotek::map_to_lingotek_locale($locale);
-		$statuses = $this->get_translations_status($doc_id);
-		if (isset($statuses[$locale]) && $statuses[$locale] != 100) {
-			return false;
-		} 
+
 		$response = $this->get(add_query_arg(array('locale_code' => $locale, 'auto_format' => 'true') , $this->api_url . '/document/' . $doc_id . '/content'));
 
 		if ($wp_id) {
@@ -540,7 +557,7 @@ class Lingotek_API extends Lingotek_HTTP {
 		$base_url = $this->base_url;
 		$client_id = $this->client_id;
 		if(!is_null($env)){
-			$base_url = (strcasecmp($env,'SANDBOX') == 0) ? self::SANDBOX_URL : self::PRODUCTION_URL;
+			$base_url = self::PRODUCTION_URL;
 		}
 		return $base_url . "/auth/authorize.html?client_id=" . $client_id . "&redirect_uri=" . urlencode($redirect_uri) . "&response_type=token";
 	}

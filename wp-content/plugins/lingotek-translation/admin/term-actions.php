@@ -19,7 +19,7 @@ class Lingotek_Term_actions extends Lingotek_Actions {
 		foreach ($this->pllm->get_translated_taxonomies() as $taxonomy)
 			add_filter( $taxonomy . '_row_actions', array(&$this, 'term_row_actions'), 10, 2);
 
-		add_action('admin_footer-edit-tags.php', array(&$this, 'add_bulk_actions')); // FIXME admin_print_footer_scripts instead?
+		// add_action('admin_footer-edit-tags.php', array(&$this, 'add_bulk_actions')); // FIXME admin_print_footer_scripts instead?
 		add_action('load-edit-tags.php', array(&$this, 'manage_actions'));
 	}
 
@@ -77,10 +77,10 @@ class Lingotek_Term_actions extends Lingotek_Actions {
 	 *
 	 * @since 0.1
 	 */
-	public function add_bulk_actions() {
-		if ($this->pllm->is_translated_taxonomy($GLOBALS['taxnow']))
-			$this->_add_bulk_actions();
-	}
+	// public function add_bulk_actions($bulk_actions) {
+	// 	if ($this->pllm->is_translated_taxonomy($GLOBALS['taxnow']))
+	// 		$this->_add_bulk_actions($bulk_actions);
+	// }
 
 	/*
 	 * manages Lingotek specific actions before WordPress acts

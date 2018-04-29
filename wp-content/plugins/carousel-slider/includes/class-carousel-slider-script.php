@@ -109,7 +109,8 @@ if ( ! class_exists( 'Carousel_Slider_Script' ) ):
 			);
 
 			foreach ( $scripts as $handle => $script ) {
-				wp_register_script( $handle, $script['src'], $script['dependency'], $script['version'], $script['in_footer'] );
+				wp_register_script( $handle, $script['src'], $script['dependency'], $script['version'],
+					$script['in_footer'] );
 			}
 		}
 
@@ -159,12 +160,8 @@ if ( ! class_exists( 'Carousel_Slider_Script' ) ):
 
                     $('body').find('.carousel-slider').each(function () {
                         var _this = $(this);
-                        var isVideo = _this.data('slide-type') === 'video-carousel';
-                        var videoWidth = isVideo ? _this.data('video-width') : false;
-                        var videoHeight = isVideo ? _this.data('video-height') : false;
                         var autoWidth = _this.data('auto-width');
                         var stagePadding = parseInt(_this.data('stage-padding'));
-                        autoWidth = isVideo ? isVideo : autoWidth;
                         stagePadding = stagePadding > 0 ? stagePadding : 0;
 
                         if (jQuery().owlCarousel) {
@@ -180,9 +177,6 @@ if ( ! class_exists( 'Carousel_Slider_Script' ) ):
                                 autoplayHoverPause: _this.data('autoplay-hover-pause'),
                                 slideBy: _this.data('slide-by'),
                                 lazyLoad: _this.data('lazy-load'),
-                                video: isVideo,
-                                videoWidth: videoWidth,
-                                videoHeight: videoHeight,
                                 autoWidth: autoWidth,
                                 navText: [
                                     '<svg class="carousel-slider-nav-icon" viewBox="0 0 20 20"><path d="M14 5l-5 5 5 5-1 2-7-7 7-7z"></path></use></svg>',
@@ -197,22 +191,46 @@ if ( ! class_exists( 'Carousel_Slider_Script' ) ):
                                     1921: {items: _this.data('colums')}
                                 }
                             });
+
+                            if ('hero-banner-slider' === _this.data('slide-type')) {
+                                var animation = _this.data('animation');
+                                if (animation.length) {
+                                    _this.on('change.owl.carousel', function () {
+                                        var sliderContent = _this.find('.carousel-slider-hero__cell__content');
+                                        sliderContent.removeClass('animated' + ' ' + animation).hide();
+                                    });
+                                    _this.on('changed.owl.carousel', function (e) {
+                                        setTimeout(function () {
+                                            var current = $(e.target).find('.carousel-slider-hero__cell__content').eq(e.item.index);
+                                            current.show().addClass('animated' + ' ' + animation);
+                                        }, _this.data('autoplay-speed'));
+                                    });
+                                }
+                            }
                         }
 
                         if (jQuery().magnificPopup) {
-                            var popupType = _this.data('slide-type') === 'product-carousel' ? 'ajax' : 'image';
-                            var popupGallery = _this.data('slide-type') !== 'product-carousel';
-                            $(this).find('.magnific-popup').magnificPopup({
-                                type: popupType,
-                                gallery: {
-                                    enabled: popupGallery
-                                },
-                                zoom: {
-                                    enabled: popupGallery,
-                                    duration: 300,
-                                    easing: 'ease-in-out'
-                                }
-                            });
+                            if (_this.data('slide-type') === 'product-carousel') {
+                                $(this).find('.magnific-popup').magnificPopup({
+                                    type: 'ajax'
+                                });
+                            } else if ('video-carousel' === _this.data('slide-type')) {
+                                $(this).find('.magnific-popup').magnificPopup({
+                                    type: 'iframe'
+                                });
+                            } else {
+                                $(this).find('.magnific-popup').magnificPopup({
+                                    type: 'image',
+                                    gallery: {
+                                        enabled: true
+                                    },
+                                    zoom: {
+                                        enabled: true,
+                                        duration: 300,
+                                        easing: 'ease-in-out'
+                                    }
+                                });
+                            }
                         }
                     });
                 })(jQuery);

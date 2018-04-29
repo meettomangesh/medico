@@ -1127,6 +1127,7 @@ class WP_List_Table {
 	 */
 	protected function display_tablenav( $which ) {
 		if ( 'top' === $which ) {
+			//print_r($this->_args); exit;
 			wp_nonce_field( 'bulk-' . $this->_args['plural'] );
 		}
 		?>
@@ -1161,6 +1162,7 @@ class WP_List_Table {
 	 * @since 3.1.0
 	 */
 	public function display_rows_or_placeholder() {
+		
 		if ( $this->has_items() ) {
 			$this->display_rows();
 		} else {
@@ -1176,8 +1178,11 @@ class WP_List_Table {
 	 * @since 3.1.0
 	 */
 	public function display_rows() {
-		foreach ( $this->items as $item )
+		
+		foreach ( $this->items as $item ){
+			
 			$this->single_row( $item );
+		}
 	}
 
 	/**
@@ -1214,6 +1219,7 @@ class WP_List_Table {
 	 * @param object $item The current item
 	 */
 	protected function single_row_columns( $item ) {
+		
 		list( $columns, $hidden, $sortable, $primary ) = $this->get_column_info();
 
 		foreach ( $columns as $column_name => $column_display_name ) {

@@ -1,0 +1,112 @@
+2018-03-25T17:23:51+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-03-26T16:04:39+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-03-27T15:07:38+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-03-27T16:37:32+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-01T09:25:30+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-01T15:15:09+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-01T16:10:06+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-04T16:06:34+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-04T16:21:44+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-04T16:21:48+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-05T16:55:39+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-05T17:13:17+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-10T16:40:06+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-10T16:40:50+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-10T17:11:53+00:00 CRITICAL Uncaught Error: Call to undefined function mysql_connect() in G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\admin\class-tablemaster-admin.php:84
+Stack trace:
+#0 G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\tablemaster.php(143): TableMaster_Admin->activate()
+#1 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(286): TableMaster->activate(false)
+#2 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 G:\xampp\htdocs\medico3\wp-includes\plugin.php(453): WP_Hook->do_action(Array)
+#4 G:\xampp\htdocs\medico3\wp-admin\includes\plugin.php(586): do_action('activate_tablem...', false)
+#5 G:\xampp\htdocs\medico3\wp-admin\plugins.php(43): activate_plugin('tablemaster/tab...', 'http://localhos...', false)
+#6 {main}
+  thrown
+
+2018-04-10T17:11:55+00:00 CRITICAL Uncaught Error: Call to undefined function mysql_connect() in G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\admin\class-tablemaster-admin.php:84
+Stack trace:
+#0 G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\tablemaster.php(143): TableMaster_Admin->activate()
+#1 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(286): TableMaster->activate('')
+#2 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 G:\xampp\htdocs\medico3\wp-includes\plugin.php(453): WP_Hook->do_action(Array)
+#4 G:\xampp\htdocs\medico3\wp-admin\plugins.php(174): do_action('activate_tablem...')
+#5 {main}
+  thrown
+
+2018-04-10T17:11:56+00:00 CRITICAL Uncaught Error: Call to undefined function mysql_connect() in G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\admin\class-tablemaster-admin.php:84
+Stack trace:
+#0 G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\tablemaster.php(143): TableMaster_Admin->activate()
+#1 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(286): TableMaster->activate('')
+#2 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 G:\xampp\htdocs\medico3\wp-includes\plugin.php(453): WP_Hook->do_action(Array)
+#4 G:\xampp\htdocs\medico3\wp-admin\plugins.php(174): do_action('activate_tablem...')
+#5 {main}
+  thrown
+
+2018-04-10T17:12:20+00:00 CRITICAL Uncaught Error: Call to undefined function mysql_connect() in G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\admin\class-tablemaster-admin.php:84
+Stack trace:
+#0 G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\tablemaster.php(143): TableMaster_Admin->activate()
+#1 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(286): TableMaster->activate(false)
+#2 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 G:\xampp\htdocs\medico3\wp-includes\plugin.php(453): WP_Hook->do_action(Array)
+#4 G:\xampp\htdocs\medico3\wp-admin\includes\plugin.php(586): do_action('activate_tablem...', false)
+#5 G:\xampp\htdocs\medico3\wp-admin\plugins.php(43): activate_plugin('tablemaster/tab...', 'http://localhos...', false)
+#6 {main}
+  thrown
+
+2018-04-10T17:12:22+00:00 CRITICAL Uncaught Error: Call to undefined function mysql_connect() in G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\admin\class-tablemaster-admin.php:84
+Stack trace:
+#0 G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\tablemaster.php(143): TableMaster_Admin->activate()
+#1 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(286): TableMaster->activate('')
+#2 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 G:\xampp\htdocs\medico3\wp-includes\plugin.php(453): WP_Hook->do_action(Array)
+#4 G:\xampp\htdocs\medico3\wp-admin\plugins.php(174): do_action('activate_tablem...')
+#5 {main}
+  thrown
+
+2018-04-10T17:12:22+00:00 CRITICAL Uncaught Error: Call to undefined function mysql_connect() in G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\admin\class-tablemaster-admin.php:84
+Stack trace:
+#0 G:\xampp\htdocs\medico3\wp-content\plugins\tablemaster\tablemaster.php(143): TableMaster_Admin->activate()
+#1 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(286): TableMaster->activate('')
+#2 G:\xampp\htdocs\medico3\wp-includes\class-wp-hook.php(310): WP_Hook->apply_filters('', Array)
+#3 G:\xampp\htdocs\medico3\wp-includes\plugin.php(453): WP_Hook->do_action(Array)
+#4 G:\xampp\htdocs\medico3\wp-admin\plugins.php(174): do_action('activate_tablem...')
+#5 {main}
+  thrown
+
+2018-04-11T16:25:24+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-12T15:32:01+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-12T15:54:17+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-14T08:10:30+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-14T08:10:50+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-28T12:09:50+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-28T12:12:01+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-28T12:14:46+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-28T12:16:31+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-29T16:47:34+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+
+2018-04-29T17:37:35+00:00 CRITICAL Maximum execution time of 30 seconds exceeded
+

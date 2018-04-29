@@ -4,7 +4,7 @@ Donate link: http://lingotek.com/
 Tags: automation, bilingual, international, language, Lingotek, localization, multilanguage, multilingual, translate, translation
 Requires at least: 3.8
 Tested up to: 4.9
-Stable tag: 1.3.4
+Stable tag: 1.3.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +121,19 @@ For more, visit the [Lingotek documentation site](https://lingotek.atlassian.net
 4. Content type profiles. Manually choosing which content to upload and download is rarely what a content administrator wants to do, and automating the upload of every change is not workable because there are various types of content. Each type of translatable content can be assigned to a customizable profile. For example, by default, we like to have Posts use an Automatic profile so that content will automatically be uploaded for translation and the resulting translations automatically be downloaded back into WordPress.
 
 == Changelog ==
+
+= 1.3.7 (2018-2-23) =
+
+* Added ability to download translations at any point of the content's workflow
+
+= 1.3.6 (2018-2-9) =
+
+* Removed option to connect to Lingotek Sandbox environment
+
+= 1.3.5 (2018-2-8) =
+
+* Added option to the Preferences page to change the auto updater interval (Thanks to Soluto for contributing this)
+* Fixed errors caused by bulk action menus
 
 = 1.3.4 (2017-12-1) =
 

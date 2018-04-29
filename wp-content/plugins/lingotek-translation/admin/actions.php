@@ -118,6 +118,11 @@ abstract class Lingotek_Actions {
 				'icon'  => 'download',
 			),
 
+			'interim' => array(
+				'title' => __('Interim Translation Downloaded', 'lingotek-translation'),
+				'icon' => 'edit'
+			),
+
 			'current' => array(
 				'title' => __( 'Current', 'lingotek-translation' ),
 				'icon'  => 'edit',
@@ -227,6 +232,10 @@ abstract class Lingotek_Actions {
 	 */
 	public static function display_icon( $name, $link, $additional = '' ) {
 		self::link_to_settings_if_not_connected($link);
+		if ($name == 'interim') {
+			return sprintf('<a class="lingotek-interim-color dashicons dashicons-%s dashicons-%s-lingotek" title="%s" href="%s"%s></a>',
+			self::$icons[ $name ]['icon'], self::$icons[ $name ]['icon'], self::$icons[ $name ]['title'], esc_url( $link ), $additional);
+		}
 		return sprintf('<a class="lingotek-color dashicons dashicons-%s dashicons-%s-lingotek" title="%s" href="%s"%s></a>',
 		self::$icons[ $name ]['icon'], self::$icons[ $name ]['icon'], self::$icons[ $name ]['title'], esc_url( $link ), $additional);
 	}
@@ -405,6 +414,10 @@ abstract class Lingotek_Actions {
 				$actions['lingotek-download'] = $this->get_action_link( array( 'document_id' => $document->document_id, 'action' => 'download' ) );
 			}
 
+			if ($document->has_translation_status('interim')) {
+				$actions['lingotek-status'] = $this->get_action_link( array( 'document_id' => $document->document_id, 'action' => 'status' ) );
+			}
+
 			// need to request translations ?
 			$language = $this->get_language( $document->source );
 			$all_locales = array_flip( $this->pllm->get_languages_list( array( 'fields' => 'locale' ) ) );
@@ -550,7 +563,7 @@ abstract class Lingotek_Actions {
 
 		if ( $document = $this->lgtm->get_group( $this->type, filter_input( INPUT_POST, 'id' ) ) ) {
 			foreach ( $document->translations as $locale => $status ) {
-				if ( 'pending' === $status || 'ready' === $status ) {
+				if ( 'pending' === $status || 'ready' === $status || 'interim' === $status || 'current' === $status) {
 					$document->create_translation( $locale );
 				}
 			}

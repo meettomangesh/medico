@@ -251,8 +251,8 @@ $(document).ready(function() {
   );
 
   $('.toogle-popup').on('click', function(evt){
-    evt.preventDefault();
-    $(this).siblings('.popup-wrapper').toggleClass('active');
+    //evt.preventDefault();
+   // $(this).siblings('.popup-wrapper').toggleClass('active');
   });
 
   $('span.close').on('click', function(evt){

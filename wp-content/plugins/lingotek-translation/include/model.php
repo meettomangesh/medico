@@ -156,6 +156,7 @@ class Lingotek_Model {
 			'delete_linked_content' => array(
 				'enabled' => 1,
 			),
+			'auto_update_status' => '10'
 		);
 		$prefs = array_merge($default, get_option('lingotek_prefs', $default)); // ensure defaults are set for missing keys
 		return $prefs;
